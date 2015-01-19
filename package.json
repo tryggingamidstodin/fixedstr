@@ -1,16 +1,29 @@
 {
-  "name": "fixedstr",
-  "version": "0.0.1",
-  "dependencies": {
-  },
-  "devDependencies": {
-    "chai": "^1.10.0",
-    "gulp": "^3.8.10",
-    "gulp-jshint": "^1.9.0",
-    "gulp-mocha": "^2.0.0",
-    "mocha": "~1.21.5"
-  },
-  "scripts": {
-    "test": "mocha -w"
-  }
+    "name": "fixedstr",
+    "description": "Transforms fixed string to object and vice versa",
+    "version": "0.0.1",
+    "keywords": [
+        "string",
+        "fixed",
+        "parse"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tryggingamidstodin/fixedstr.git"
+    },
+    "homepage": "https://github.com/tryggingamidstodin/fixedstr",
+    "bugs": {
+        "url": "https://github.com/tryggingamidstodin/fixedstr/issues"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "chai": "^1.10.0",
+        "gulp": "^3.8.10",
+        "gulp-jshint": "^1.9.0",
+        "gulp-mocha": "^2.0.0",
+        "mocha": "~1.21.5"
+    },
+    "scripts": {
+        "test": "mocha -w"
+    }
 }
