@@ -5,7 +5,13 @@ var fixedstr = require('../'),
 describe('fixedstr', function() {
     var transformer = fixedstr([
         fixedstr.str('foo', 2),
-        fixedstr.str('bar', 5),
+        {
+            name: 'bar',
+            size: 5,
+            parse: function(str) {
+                return str;
+            }
+        },
         fixedstr.number('baz', 3)
     ]);
 
@@ -13,7 +19,7 @@ describe('fixedstr', function() {
 
         expect(transformer.objectify('F Bar  3')).to.eql({
             foo: 'F',
-            bar: 'Bar',
+            bar: 'Bar  ',
             baz: 3
         });
     });
