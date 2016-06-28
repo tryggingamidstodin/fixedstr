@@ -56,7 +56,7 @@ describe('fixedstr', function() {
         })).to.equal('F      000');
     });
 
-    it('should throw truncation error', function () {
+    it('should throw truncation error on string type', function () {
         var ex;
         try{
             transformer.stringify({
@@ -66,5 +66,31 @@ describe('fixedstr', function() {
             ex = e;
         }
         expect(ex.message).to.contain('truncation error on field: foo');
+    });
+
+    it('should throw truncation error on number type', function () {
+        var ex;
+        try{
+            transformer.stringify({
+                baz: 12345
+            });
+        }catch(e) {
+            ex = e;
+        }
+        expect(ex.message).to.contain('truncation error on field: baz');
+    });
+
+    it('should not throw truncation error if toFixedString truncated the value', function() {
+        var t = fixedstr([{
+            name: 'foo',
+            size: 4,
+            toFixedString: function(f, value) {
+                return value.substr(0, 4);
+            }
+        }]);
+        var str = t.stringify({
+            foo: '123456'
+        });
+        expect(str).to.equal('1234');
     });
 });

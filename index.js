@@ -6,7 +6,8 @@ function parseText(str) {
 
 function textToString(field, value) {
     value = value || '';
-    var end = new Array(field.size + 1 - value.length).join(' ');
+    var endLength = Math.max(0, field.size + 1 - value.length);
+    var end = new Array(endLength).join(' ');
     return value + end;
 }
 
@@ -25,10 +26,11 @@ var fixedstr = module.exports = function (objDef) {
         stringify: function (obj) {
             return objDef.reduce(function (str, field) {
                 var toStr = field.toFixedString || textToString;
-                if(obj[field.name] && obj[field.name].length > field.size) {
+                var strValue = toStr(field, obj[field.name]);
+                if(strValue && strValue.length > field.size) {
                     throw new Error('truncation error on field: ' + field.name + ', size: ' + field.size + ', value: ' + obj[field.name]);
                 }
-                return str + toStr(field, obj[field.name]);
+                return str + strValue;
             }, '');
         }
     };
@@ -48,7 +50,7 @@ fixedstr.number = function (name, size) {
         parse: Number,
         toFixedString: function (field, value) {
             var strVal = value && value.toString ? value.toString() : '0',
-                pad = new Array(field.size + 1 - strVal.length).join('0');
+                pad = new Array(Math.max(0, field.size + 1 - strVal.length)).join('0');
             return pad + strVal;
         }
     };
