@@ -43,7 +43,7 @@ fixedstr.str = function (name, size) {
     };
 };
 
-fixedstr.str_trunc = function (name, size) {
+fixedstr.strTrunc = function (name, size) {
     return {
         name: name,
         size: size,
