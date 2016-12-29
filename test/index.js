@@ -93,4 +93,12 @@ describe('fixedstr', function() {
         });
         expect(str).to.equal('1234');
     });
+
+    it('should not throw truncation error if using fixedstr.strTrunc', function() {
+        var t = fixedstr([fixedstr.strTrunc('TEST', 5)]);
+        var str = t.stringify({
+            TEST: '123456'
+        });
+        expect(str).to.equal('12345');
+    });
 });
