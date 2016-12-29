@@ -1,7 +1,7 @@
 {
   "name": "fixedstr",
   "description": "Transforms fixed string to object and vice versa",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "keywords": [
     "string",
     "fixed",
