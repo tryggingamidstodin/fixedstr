@@ -43,6 +43,17 @@ fixedstr.str = function (name, size) {
     };
 };
 
+fixedstr.str_trunc = function (name, size) {
+    return {
+        name: name,
+        size: size,
+        toFixedString: function (field, value) {
+            var str = (value || '').substring(0, size);
+            return textToString(field, str);
+        }
+    };
+}
+
 fixedstr.number = function (name, size) {
     return {
         name: name,
