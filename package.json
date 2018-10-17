@@ -1,11 +1,12 @@
 {
   "name": "fixedstr",
-  "description": "Transforms fixed string to object and vice versa",
-  "version": "0.0.4",
-  "keywords": [
-    "string",
-    "fixed",
-    "parse"
+  "author": "Tryggingamiðstöðin <bt.hugbunadargerd@tm.is>",
+  "version": "1.0.0",
+  "description": "Transforms fixed string to object and vice versa",    
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
   ],
   "repository": {
     "type": "git",
@@ -15,15 +16,42 @@
   "bugs": {
     "url": "https://github.com/tryggingamidstodin/fixedstr/issues"
   },
+  "license": "MIT",
+  "keywords": [
+    "string",
+    "string to object",
+    "stringify",
+    "fixed",
+    "parse",
+    "object",
+    "object to string",
+    "objectify"
+  ],    
+  "scripts": {
+    "lint": "tslint ./src/**",
+    "format-verify": "prettier -l ./src/**",
+    "format": "prettier --write ./src/**",
+    "test": "mocha dist/test",
+    "compile": "tsc",
+    "clean": "rm -rf ./dist && tsc",
+    "ci": "npm run clean && npm run lint && npm run format-verify && npm run test"
+  },
   "dependencies": {},
   "devDependencies": {
-    "chai": "^1.10.0",
-    "gulp": "^3.8.10",
-    "gulp-jshint": "^1.9.0",
-    "gulp-mocha": "^2.0.0",
-    "mocha": "~1.21.5"
+    "@types/chai": "^4.1.6",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "husky": "^1.1.2",
+    "mocha": "^5.2.0",
+    "prettier": "^1.14.3",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.1.3"
   },
-  "scripts": {
-    "test": "mocha -w"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run format-verify",
+      "pre-push": "npm run ci"
+    }
   }
 }
