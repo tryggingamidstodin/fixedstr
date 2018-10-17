@@ -3,7 +3,7 @@ fixedstr
 Transforms fixed string to object and vice versa
 
 ```javascript
-    var transformer = fixedstr([
+    var transformer = new fixedstr([
         fixedstr.str('foo', 2),
         fixedstr.str('bar', 5),
         fixedstr.number('baz', 3)
