@@ -1,6 +1,12 @@
 import { expect } from 'chai'
 import fixedstr from './'
 
+interface ITestObject {
+  foo: string
+  bar: string
+  bas: number
+}
+
 describe('fixedstr', () => {
   const transformer = new fixedstr([
     fixedstr.str('foo', 2),
@@ -13,7 +19,7 @@ describe('fixedstr', () => {
   ])
 
   it('should objectify', () => {
-    expect(transformer.objectify('F Bar  3')).to.eql({
+    expect(transformer.objectify<ITestObject>('F Bar  3')).to.eql({
       foo: 'F',
       bar: 'Bar  ',
       baz: 3
@@ -21,7 +27,7 @@ describe('fixedstr', () => {
   })
 
   it('should objectify empty string', () => {
-    expect(transformer.objectify('')).to.eql({
+    expect(transformer.objectify<ITestObject>('')).to.eql({
       foo: '',
       bar: '',
       baz: 0
@@ -29,7 +35,7 @@ describe('fixedstr', () => {
   })
 
   it('should objectify empty undefined', () => {
-    expect(transformer.objectify()).to.eql({
+    expect(transformer.objectify<ITestObject>()).to.eql({
       foo: '',
       bar: '',
       baz: 0

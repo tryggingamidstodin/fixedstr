@@ -17,14 +17,11 @@ export interface IObjectDefinition {
 }
 
 export interface IFixedStr {
-  objectify: (str?: string) => object
+  objectify: <TargetObject>(str?: string) => TargetObject
   stringify: (obj: object) => string
-  str: (name: string, size: number) => IObjectDefinition
-  strTrunc: (name: string, size: number) => IObjectDefinition
-  number: (name: string, size: number) => IObjectDefinition
 }
 
-export default class FixedStr {
+export default class FixedStr implements IFixedStr {
   public static str(name: string, size: number): IObjectDefinition {
     return {
       name: name,
@@ -64,15 +61,18 @@ export default class FixedStr {
     this.objDef = ObjectDefinitions
   }
 
-  public objectify(str?): object {
+  public objectify<TargetObject>(str?): TargetObject {
     let from = 0
     str = str || ''
-    return this.objDef.reduce((obj, field) => {
-      const parse = field.parse || parseText
-      obj[field.name] = parse(str.substring(from, from + field.size))
-      from += field.size
-      return obj
-    }, {})
+    return this.objDef.reduce(
+      (obj, field) => {
+        const parse = field.parse || parseText
+        obj[field.name] = parse(str.substring(from, from + field.size))
+        from += field.size
+        return obj
+      },
+      {} as TargetObject
+    )
   }
 
   public stringify(obj): string {
