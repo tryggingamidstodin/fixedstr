@@ -21,7 +21,7 @@ export interface IFixedStr {
   stringify: (obj: object) => string
 }
 
-export default class FixedStr implements IFixedStr {
+export class FixedStr implements IFixedStr {
   public static str(name: string, size: number): IObjectDefinition {
     return {
       name: name,

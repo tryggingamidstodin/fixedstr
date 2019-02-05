@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import fixedstr from './'
+import { FixedStr } from './'
 
 interface ITestObject {
   foo: string
@@ -8,14 +8,14 @@ interface ITestObject {
 }
 
 describe('fixedstr', () => {
-  const transformer = new fixedstr([
-    fixedstr.str('foo', 2),
+  const transformer = new FixedStr([
+    FixedStr.str('foo', 2),
     {
       name: 'bar',
       size: 5,
       parse: str => str
     },
-    fixedstr.number('baz', 3)
+    FixedStr.number('baz', 3)
   ])
 
   it('should objectify', () => {
@@ -85,7 +85,7 @@ describe('fixedstr', () => {
   })
 
   it('should not throw truncation error if toFixedString truncated the value', () => {
-    const t = new fixedstr([
+    const t = new FixedStr([
       {
         name: 'foo',
         size: 4,
@@ -101,7 +101,7 @@ describe('fixedstr', () => {
   })
 
   it('should not throw truncation error if using fixedstr.strTrunc', () => {
-    const t = new fixedstr([fixedstr.strTrunc('TEST', 5)])
+    const t = new FixedStr([FixedStr.strTrunc('TEST', 5)])
     const str = t.stringify({
       TEST: '123456'
     })
