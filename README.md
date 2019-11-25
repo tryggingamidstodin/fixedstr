@@ -2,7 +2,7 @@
 
 Transforms fixed string to object and vice versa
 
-##Javascript
+## Javascript
 
 ```javascript
 var transformer = new fixedstr([
@@ -14,7 +14,7 @@ transformer.objectify('F Bar  012') // {foo: 'F', bar: 'Bar', baz: 12}
 transformer.stringify({ foo: 'F', bar: 'Bar', baz: 12 }) // 'F Bar  012'
 ```
 
-##Typescript
+## Typescript
 
 ```typescript
 import { FixedStr } from 'fixedstr'
