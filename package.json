@@ -2,7 +2,7 @@
   "name": "fixedstr",
   "author": "Tryggingamiðstöðin <bt.hugbunadargerd@tm.is>",
   "version": "1.0.3",
-  "description": "Transforms fixed string to object and vice versa",    
+  "description": "Transforms fixed string to object and vice versa",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -26,12 +26,13 @@
     "object",
     "object to string",
     "objectify"
-  ],    
+  ],
   "scripts": {
     "lint": "tslint ./src/**",
     "format-verify": "prettier -l ./src/**",
     "format": "prettier --write ./src/**",
     "test": "mocha dist/test",
+    "tdd": "mocha --exit -R min --require ts-node/register --recursive --watch-extensions ts,js --watch 'src/test.ts'",
     "compile": "tsc",
     "clean": "rm -rf ./dist && tsc",
     "ci": "npm run clean && npm run lint && npm run format-verify && npm run test"
@@ -46,7 +47,8 @@
     "prettier": "^1.14.3",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
-    "typescript": "^3.1.3"
+    "typescript": "^3.1.3",
+    "ts-node": "^8.5.2"
   },
   "husky": {
     "hooks": {
